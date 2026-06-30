@@ -1,9 +1,14 @@
 # LinkedIn 101 — Topic Presentations (Web)
 
+[![Live site](https://img.shields.io/badge/Live%20site-cycywills--dev.github.io%2Flinkedin--101-0A66C2?style=for-the-badge&logo=githubpages&logoColor=white)](https://cycywills-dev.github.io/linkedin-101/)
+
+**▶ View the live decks: https://cycywills-dev.github.io/linkedin-101/**
+
 Nine standalone, self-paced HTML slide decks adapted from the *Build Your Professional
 Presence Online* session by **Cyhana Williams**. Each deck mirrors the original design
 (LinkedIn brand blue, navy/light slides, card layouts) and carries the
-`Cyhana Williams © 2026` watermark on every slide.
+`Cyhana Williams © 2026` watermark on every slide. The original `.pptx` files are also
+included (in `pptx/`) and downloadable from the landing page.
 
 ## Files
 | File | Topic | Source slides | Slides |

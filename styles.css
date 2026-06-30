@@ -168,13 +168,25 @@ ul.dots-list .ar{color:var(--blue);font-weight:800}
 .idx .kick{color:var(--blue-l);font-size:clamp(13px,1.6vw,16px);margin-bottom:14px}
 .idx .lead{color:var(--muted-d);font-size:clamp(15px,2vw,19px);max-width:760px;margin:18px 0 40px}
 .idx .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.idx a.tcard{display:block;text-decoration:none;background:#141c2e;border:1px solid #243049;
-  border-radius:16px;padding:22px 22px 24px;color:#e7edf4;transition:transform .15s,border-color .15s}
-.idx a.tcard:hover{transform:translateY(-3px);border-color:var(--blue-l)}
+.idx .tcard{display:flex;flex-direction:column;background:#141c2e;border:1px solid #243049;
+  border-radius:16px;padding:22px 22px 20px;color:#e7edf4;transition:transform .15s,border-color .15s}
+.idx .tcard:hover{transform:translateY(-3px);border-color:var(--blue-l)}
 .idx .tnum{font-family:Poppins;font-weight:700;color:var(--blue-l);font-size:14px;letter-spacing:.08em}
 .idx .tname{font-family:Poppins;font-weight:700;font-size:20px;margin:8px 0 8px}
 .idx .tdesc{color:var(--muted-d);font-size:14px;line-height:1.4}
 .idx .meta{color:#6b7890;font-size:12.5px;margin-top:14px}
+.idx .tactions{display:flex;gap:10px;margin-top:16px}
+.idx .btn-open,.idx .btn-dl{text-decoration:none;font-size:13.5px;font-weight:600;
+  border-radius:9px;padding:9px 13px;transition:background .15s,border-color .15s}
+.idx .btn-open{background:var(--blue);color:#fff;flex:1;text-align:center}
+.idx .btn-open:hover{background:#0b73d6}
+.idx .btn-dl{background:transparent;color:#cfd8e3;border:1px solid #2c3650}
+.idx .btn-dl:hover{border-color:var(--blue-l);color:#fff}
+.idx .idxbar{margin:0 0 26px}
+.idx .btn-all{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  font-weight:600;font-size:14px;color:#fff;background:#1c2740;border:1px solid #2c3650;
+  border-radius:10px;padding:11px 16px;transition:border-color .15s,background .15s}
+.idx .btn-all:hover{border-color:var(--blue-l);background:#22304d}
 .idx footer{color:#6b7890;font-size:13px;margin-top:46px;text-align:center}
 
 .pbtn{border:1px solid #2c3650;background:#161d2e;color:#cfd8e3;cursor:pointer;

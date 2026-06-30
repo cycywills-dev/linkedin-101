@@ -595,11 +595,16 @@ def topic09():
 def build_index(rows):
     cards = ""
     for i, (name, desc, src, n, fn) in enumerate(rows, 1):
-        cards += (f'<a class="tcard" href="{fn}">'
+        pptx = "pptx/" + fn.replace(".html", ".pptx")
+        cards += (f'<div class="tcard">'
                   f'<div class="tnum">TOPIC {i:02d}</div>'
                   f'<div class="tname">{esc(name)}</div>'
                   f'<div class="tdesc">{esc(desc)}</div>'
-                  f'<div class="meta">{n} slides · from parent slides {esc(src)}</div></a>')
+                  f'<div class="meta">{n} slides · from parent slides {esc(src)}</div>'
+                  f'<div class="tactions">'
+                  f'<a class="btn-open" href="{fn}">Open deck →</a>'
+                  f'<a class="btn-dl" href="{pptx}" download>⤓ .pptx</a>'
+                  f'</div></div>')
     html = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -612,6 +617,7 @@ def build_index(rows):
 <h1>LinkedIn 101 — Topic Presentations</h1>
 <p class="lead">Nine standalone, self-paced decks adapted from the full LinkedIn 101 session.
 Use ← → or swipe to navigate each one. Built for students and early-career professionals.</p>
+<div class="idxbar"><a class="btn-all" href="linkedin-101-pptx.zip" download>⤓ Download all decks (.pptx, .zip)</a></div>
 <div class="cards">{cards}</div>
 <footer>Cyhana Williams © 2026 · Co-founder, African Women in GIS · linktr.ee/cyhana</footer>
 </div></body></html>'''
