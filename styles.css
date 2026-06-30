@@ -1,0 +1,203 @@
+/* LinkedIn 101 — topic decks (web). Slides scale via container query units. */
+:root{
+  --blue:#0A66C2; --blue-dk:#074A8F; --blue-l:#409AE0;
+  --navy:#12182B; --navy-card:#1C253D; --navy-2:#102A47;
+  --light:#F1F5F8; --ink:#1B2533; --muted:#5E6E7E; --muted-d:#A9B4C2;
+  --line:#DDE4EA; --green:#2E9E5B; --purple:#8B5CF6; --orange:#E07B39;
+  --red:#D84A4A; --teal:#1291A8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;background:#0b0f1a;color:var(--ink)}
+
+.deck{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:1.2vh;padding:2vh 0}
+.stage{position:relative;aspect-ratio:16/9;width:min(95vw,168vh);
+  container-type:size;border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.55)}
+
+/* ---- slide shells ---- */
+.slide{position:absolute;inset:0;display:none;opacity:0;
+  transition:opacity .35s ease}
+.slide.active{display:block;opacity:1}
+.slide.light{background:var(--light);color:var(--ink)}
+.slide.dark{background:var(--navy);color:#fff}
+.slide.grad{background:linear-gradient(125deg,var(--navy) 0%,var(--blue-dk) 100%);color:#fff}
+.pad{position:absolute;inset:0;padding:6.5cqh 5.5cqw 8cqh}
+
+/* ---- footer bits on every slide ---- */
+.wm{position:absolute;left:0;right:0;bottom:1.6cqh;text-align:center;
+  font-size:.95cqw;letter-spacing:.02em}
+.slide.light .wm{color:#1b2533;opacity:.30}
+.slide.dark .wm,.slide.grad .wm{color:#fff;opacity:.26}
+.ftag{position:absolute;left:5.5cqw;bottom:1.5cqh;font-size:.92cqw;opacity:.55}
+.fpage{position:absolute;right:5.5cqw;bottom:1.5cqh;font-size:.92cqw;opacity:.55}
+
+/* ---- type ---- */
+.eyebrow{font-family:Poppins,sans-serif;font-weight:700;font-size:1.15cqw;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.8cqh}
+.slide.dark .eyebrow,.slide.grad .eyebrow{color:var(--blue-l)}
+.h1{font-family:Poppins,sans-serif;font-weight:700;font-size:3.3cqw;line-height:1.05}
+.sub{font-size:1.3cqw;color:var(--muted);margin-top:1.2cqh;max-width:84%;line-height:1.35}
+.slide.dark .sub,.slide.grad .sub{color:var(--muted-d)}
+
+/* ---- title slide ---- */
+.kick{font-family:Poppins,sans-serif;font-weight:700;font-size:1.3cqw;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--blue-l)}
+.kbar{width:5cqw;height:.7cqh;border-radius:2px;background:var(--blue-l);margin-bottom:1.4cqh}
+.big{font-family:Poppins,sans-serif;font-weight:800;font-size:5cqw;line-height:1.02;
+  margin:1.2cqh 0}
+.lead{font-size:1.55cqw;color:var(--muted-d);max-width:74%;line-height:1.4;margin-top:1.4cqh}
+.chips{display:flex;gap:1cqw;margin-top:3cqh;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;border-radius:99px;
+  padding:.7cqh 1.3cqw;font-weight:600;font-size:1.05cqw;color:#fff;background:var(--c,var(--blue))}
+
+/* ---- grids & cards ---- */
+.grid{display:grid;gap:1.5cqw;margin-top:3.2cqh}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:1.3cqw;
+  padding:2cqh 1.5cqw;overflow:hidden}
+.slide.dark .card{background:var(--navy-card);border:none}
+.card.bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.6cqw;
+  background:var(--accent,var(--blue))}
+.card.topbar::before{content:"";position:absolute;left:0;right:0;top:0;height:1cqh;
+  background:var(--accent,var(--blue))}
+.card.bar{padding-left:2cqw}
+.ct{font-weight:700;font-size:1.3cqw;line-height:1.15;display:flex;gap:.6cqw;align-items:baseline}
+.cd{font-size:1.05cqw;color:var(--muted);line-height:1.25;margin-top:.9cqh}
+.slide.dark .cd{color:var(--muted-d)}
+.card .em{font-size:1.3cqw}
+
+/* numbered */
+.nb{width:2.7cqw;height:2.7cqw;flex:0 0 auto;border-radius:50%;background:var(--blue);
+  color:#fff;display:grid;place-items:center;font-family:Poppins;font-weight:700;font-size:1.5cqw}
+.row{display:flex;gap:1.1cqw;align-items:flex-start}
+
+/* stats */
+.stat{background:#fff;border:1px solid var(--line);border-radius:1.3cqw;
+  padding:2.4cqh 1cqw;text-align:center}
+.slide.dark .stat{background:var(--navy-card);border:none}
+.stat .num{font-family:Poppins;font-weight:800;font-size:3.4cqw;color:var(--blue);line-height:1}
+.slide.dark .stat .num{color:var(--blue-l)}
+.stat .lab{font-size:1.05cqw;color:var(--muted);margin-top:.9cqh;line-height:1.2}
+.slide.dark .stat .lab{color:var(--muted-d)}
+
+/* columns (level cards) */
+.colhead{border:1.5px solid var(--accent);border-radius:1.2cqw;padding:1.6cqh 1.2cqw;
+  background:#fff}
+.slide.dark .colhead{background:var(--navy-card)}
+.colhead .ct{color:var(--accent)}
+.colhead .cd{margin-top:.5cqh}
+.colbody{background:#fff;border:1px solid var(--line);border-radius:1.2cqw;
+  padding:1.6cqh 1.2cqw;margin-top:1cqh;display:flex;flex-direction:column;gap:1.3cqh}
+.slide.dark .colbody{background:var(--navy-card);border:none}
+.it-t{font-weight:700;font-size:1.1cqw}
+.it-d{font-size:.95cqw;color:var(--muted);line-height:1.2;margin-top:.3cqh}
+.slide.dark .it-d{color:var(--muted-d)}
+
+/* callout */
+.callout{margin-top:2.6cqh;border-radius:1.2cqw;padding:2cqh 1.8cqw;position:relative;
+  background:var(--navy);color:#fff;overflow:hidden}
+.callout.soft{background:var(--navy-2)}
+.callout.bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.7cqw;background:var(--blue-l)}
+.callout.bar{padding-left:2.4cqw}
+.callout .h{font-family:Poppins;font-weight:700;font-size:1.3cqw;color:var(--blue-l);margin-bottom:.6cqh}
+.callout p{font-size:1.25cqw;line-height:1.3}
+.slide.light .callout p{color:#fff}
+
+/* checklist (takeaways) */
+.check{display:flex;flex-direction:column;gap:1.6cqh;margin-top:3cqh}
+.check li{list-style:none;display:flex;gap:1cqw;font-size:1.45cqw;line-height:1.25}
+.check .tick{color:var(--green);font-weight:800;flex:0 0 auto}
+.quote{margin-top:3cqh;border-radius:1.2cqw;padding:2cqh 2cqw;position:relative;
+  background:#fff;border:1px solid var(--line);font-style:italic;font-size:1.4cqw}
+.slide.dark .quote{background:var(--navy-card);border:none}
+.quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.6cqw;
+  background:var(--blue-l);border-radius:6px 0 0 6px}
+
+/* examples (before/after) */
+.ex{background:#fff;border:1px solid var(--line);border-radius:1.2cqw;padding:1.5cqh 1.5cqw;
+  margin-top:1.6cqh}
+.slide.dark .ex{background:var(--navy-card);border:none}
+.ex .bad{color:var(--red);font-style:italic;font-size:1.1cqw;margin-top:.8cqh;
+  text-decoration:line-through;text-decoration-color:rgba(216,74,74,.6)}
+.ex .good{font-weight:700;font-size:1.2cqw;margin-top:.5cqh}
+.formula{background:var(--navy);color:#fff;border-radius:1.2cqw;text-align:center;
+  font-family:Poppins;font-weight:700;font-size:1.8cqw;padding:2.2cqh 1cqw;margin-top:2.8cqh}
+
+/* template quote cards */
+.tpl{background:var(--navy-card);border-radius:1.2cqw;padding:1.7cqh 1.6cqw;margin-top:1.5cqh}
+.tpl .body{font-style:italic;color:#D8DEE6;font-size:1.15cqw;line-height:1.3;margin-top:.9cqh}
+
+/* employer pills */
+.pills{display:flex;flex-wrap:wrap;gap:.8cqw;margin-top:1.4cqh}
+.pill{background:var(--navy-card);color:#fff;border-radius:99px;padding:.7cqh 1.2cqw;
+  font-weight:600;font-size:1.05cqw}
+
+/* objectives */
+.obj{display:flex;flex-direction:column;gap:1.3cqh;margin-top:3cqh}
+.obj .row{background:#fff;border:1px solid var(--line);border-radius:1cqw;
+  padding:1.5cqh 1.4cqw;align-items:center}
+.slide.dark .obj .row{background:var(--navy-card);border:none}
+.obj .ot{font-weight:700;font-size:1.35cqw}
+
+ul.dots-list{margin-top:3cqh;display:flex;flex-direction:column;gap:1.5cqh}
+ul.dots-list li{list-style:none;display:flex;gap:1cqw;font-size:1.4cqw;line-height:1.25}
+ul.dots-list .ar{color:var(--blue);font-weight:800}
+.slide.dark ul.dots-list .ar{color:var(--blue-l)}
+
+/* ---- controls ---- */
+.controls{display:flex;align-items:center;gap:1.2vh;color:#cfd8e3;
+  font:500 1.6vh Inter}
+.nav{width:4.6vh;height:4.6vh;border-radius:50%;border:1px solid #2c3650;
+  background:#161d2e;color:#cfd8e3;font-size:2.2vh;cursor:pointer;display:grid;place-items:center}
+.nav:hover{background:#1f2940}
+.dots{display:flex;gap:.9vh;max-width:46vh;flex-wrap:wrap;justify-content:center}
+.dot{width:1.1vh;height:1.1vh;border-radius:50%;border:none;background:#39435c;
+  cursor:pointer;padding:0}
+.dot.on{background:var(--blue-l);width:3.2vh;border-radius:99px}
+.pageno{min-width:7vh;text-align:center;opacity:.8}
+.home{color:#cfd8e3;text-decoration:none;opacity:.8;font-size:1.5vh}
+.home:hover{opacity:1;color:#fff}
+
+/* ---- index page ---- */
+.idx{max-width:1100px;margin:0 auto;padding:7vh 4vw;color:#e7edf4}
+.idx h1{font-family:Poppins;font-weight:800;font-size:clamp(28px,5vw,52px);line-height:1.05}
+.idx .kick{color:var(--blue-l);font-size:clamp(13px,1.6vw,16px);margin-bottom:14px}
+.idx .lead{color:var(--muted-d);font-size:clamp(15px,2vw,19px);max-width:760px;margin:18px 0 40px}
+.idx .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.idx a.tcard{display:block;text-decoration:none;background:#141c2e;border:1px solid #243049;
+  border-radius:16px;padding:22px 22px 24px;color:#e7edf4;transition:transform .15s,border-color .15s}
+.idx a.tcard:hover{transform:translateY(-3px);border-color:var(--blue-l)}
+.idx .tnum{font-family:Poppins;font-weight:700;color:var(--blue-l);font-size:14px;letter-spacing:.08em}
+.idx .tname{font-family:Poppins;font-weight:700;font-size:20px;margin:8px 0 8px}
+.idx .tdesc{color:var(--muted-d);font-size:14px;line-height:1.4}
+.idx .meta{color:#6b7890;font-size:12.5px;margin-top:14px}
+.idx footer{color:#6b7890;font-size:13px;margin-top:46px;text-align:center}
+
+.pbtn{border:1px solid #2c3650;background:#161d2e;color:#cfd8e3;cursor:pointer;
+  border-radius:99px;padding:1vh 1.6vh;font:600 1.5vh Inter;display:inline-flex;
+  align-items:center;gap:.6vh}
+.pbtn:hover{background:#1f2940;color:#fff}
+
+@media (max-width:640px){
+  .stage{width:96vw}
+  .controls{flex-wrap:wrap;justify-content:center;padding:0 3vw}
+}
+
+/* ---- print / Save as PDF: one 16:9 page per slide ---- */
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{background:#fff}
+  body,.slide{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .deck{display:block;min-height:0;padding:0;gap:0}
+  .stage{width:auto;aspect-ratio:auto;border-radius:0;box-shadow:none;
+    overflow:visible;container-type:normal}
+  .slide{display:block !important;opacity:1 !important;position:relative;inset:auto;
+    width:13.333in;height:7.5in;container-type:size;overflow:hidden;border-radius:0;
+    page-break-after:always;break-after:page}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+  .controls{display:none !important}
+}
